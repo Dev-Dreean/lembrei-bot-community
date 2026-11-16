@@ -2,7 +2,7 @@
 
 Bot pessoal de lembretes no Telegram, em TypeScript, Cloudflare Workers e D1.
 Esta versão comunitária está em preparação e ainda não foi validada em produção.
-Abertura do código depende da confirmação de autoria/direitos e escolha de licença.
+Distribuído sob a licença MIT; consulte [LICENSE](LICENSE).
 
 ## Recursos
 
@@ -64,7 +64,7 @@ A escrita rápida aceita `amanha` sem acento; fluxo guiado aceita também `amanh
 - `/excluir` marca o registro como excluído; não apaga fisicamente. Banco guarda títulos,
   notas, ID do dono, registros de água e rascunhos; o operador define retenção/backups.
 - Telegram e Cloudflare processam dados. Não envie informações sensíveis desnecessárias.
-- Testes locais não substituem ensaio real em conta/bot novos. Veja PREPARATION_REPORT.md.
+- Testes locais não substituem ensaio real em conta/bot novos. 
 
 ## Migração de uma instalação anterior
 
