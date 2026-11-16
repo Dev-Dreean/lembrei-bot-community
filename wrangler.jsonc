@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lembrei-bot",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-12",
+  "triggers": {
+    "crons": ["*/30 * * * *"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "lembrei_bot",
+      "database_id": "00000000-0000-0000-0000-000000000000"
+    }
+  ]
+}
+

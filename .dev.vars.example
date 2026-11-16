@@ -1,0 +1,4 @@
+# Placeholder values only. Copy to .dev.vars locally; never commit your copy.
+TELEGRAM_BOT_TOKEN="replace-with-test-bot-token"
+OWNER_TELEGRAM_ID="replace-with-your-numeric-telegram-id"
+WEBHOOK_SECRET="replace-with-long-random-base64url-secret"
