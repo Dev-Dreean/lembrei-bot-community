@@ -31,18 +31,19 @@ O banco de exemplo tem UUID vazio; não contém identificadores do banco origina
 
 ## Instalação independente (apenas quando desejar implantar)
 
-1. Crie seu bot no BotFather do Telegram. Descubra seu próprio ID numérico.
-2. Crie uma conta/projeto Cloudflare e um banco D1 próprio (`npx wrangler d1 create lembrei_bot`).
-3. Copie o ID NOVO para `wrangler.jsonc`. Não reutilize recursos de outra instalação.
-4. Configure os segredos no Worker com `npx wrangler secret put TELEGRAM_BOT_TOKEN`,
+1. Crie um bot exclusivo no BotFather do Telegram, sem reutilizar o token de outra instalação. Descubra seu próprio ID numérico.
+2. No painel da Cloudflare, confirme a conta e escolha um nome de Worker que ainda não exista nela. O exemplo usa `lembrei-bot-community`. Se já estiver em uso, escolha outro nome e ajuste `name` em `wrangler.jsonc`. Nunca use o nome do Worker de produção.
+3. Crie um D1 exclusivo (`npx wrangler d1 create lembrei_bot_community`, ou outro nome ainda não usado). Preencha `database_name` e `database_id` com os valores novos, mantendo o `binding` como `DB`. Não reutilize o banco de produção.
+4. Confira o nome do Worker e o ID do D1 **antes** de rodar qualquer comando remoto. `wrangler secret put` pode publicar uma nova versão do Worker que está no arquivo de configuração.
+5. Configure os segredos do Worker novo com `npx wrangler secret put TELEGRAM_BOT_TOKEN`,
    `npx wrangler secret put OWNER_TELEGRAM_ID` e `npx wrangler secret put WEBHOOK_SECRET`.
    O segredo do webhook deve usar caracteres A-Z, a-z, 0-9, _ e -, com 32+ caracteres aleatórios.
-5. `npm run db:remote` e `npm run deploy` alteram o ambiente remoto e podem gerar custos.
-6. Faça POST em `https://SEU-WORKER.workers.dev/setup-telegram` com o cabeçalho
+6. Aplique as migrações ao banco novo com `npx wrangler d1 migrations apply DB --remote` e publique com `npm run deploy`. Esses comandos alteram recursos remotos e podem gerar custos.
+7. Faça POST em `https://SEU-WORKER.workers.dev/setup-telegram` com o cabeçalho
    `Authorization: Bearer SEU_SEGREDO` usando seu cliente HTTP seguro. Não coloque o segredo
    na URL, em screenshots, histórico compartilhado ou comandos salvos. O Worker registra
    `/telegram` com `secret_token` e preserva atualizações pendentes.
-7. Abra o bot em chat privado, envie `/start`, crie um lembrete de teste e confira a entrega.
+8. Abra o bot em chat privado, envie `/start`, crie um lembrete fictício e confira o disparo em Cron Events e a entrega no Telegram.
 
 ## Comandos
 
